@@ -1,0 +1,44 @@
+<div class="pagestats">
+    <div ng-include src="'templates/header.html'"></div>
+
+    <md-content laout="column" flex>
+        <md-card class="editcard">
+            <label>Create New Organization</label>
+            <div>
+                <md-input-container class="md-icon-float md-icon-right md-block" style="height: 40px;">
+                    <label>Name</label>
+                    <input ng-model="org.name">
+                </md-input-container>
+
+                <md-input-container class="md-icon-float md-icon-right md-block" style="height: 40px;">
+                    <label>Address</label>
+                    <input id="autocomplete" ng-model="org.address" placeholder="Enter your address" type="text" name="placeName" />
+                </md-input-container>
+
+                <md-input-container ng-if="orgFields['da97f8d63d9625497c268340b19d6a04c407418d']" class="md-icon-float md-icon-right md-block" style="height: 40px;">
+                    <label>Url</label>
+                    <input ng-model="org['da97f8d63d9625497c268340b19d6a04c407418d']">
+                </md-input-container>
+
+                <md-input-container ng-if="orgFields['475b0aa34d21dbf01357541a25fe683a9ebcc24b']" class="md-icon-float md-icon-right md-block" style="height: 40px;">
+                    <label>Shop Category</label>
+                    <input ng-model="org['475b0aa34d21dbf01357541a25fe683a9ebcc24b']">
+                </md-input-container>
+            </div>
+
+            <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+                <!--<div layout="row" layout-align="start center" flex>-->
+                    <!--<md-button class="md-raised md-warn">Delete Org</md-button>-->
+                    <!--<span flex></span>-->
+                <!--</div>-->
+                <md-button class="md-raised md-primary" ng-click="createOrg()">Create Org</md-button>
+            </section>
+
+
+        </md-card>
+
+
+
+    </md-content>
+
+</div>

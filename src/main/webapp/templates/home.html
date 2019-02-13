@@ -1,0 +1,56 @@
+<div class="pagestats">
+    <div ng-include src="'templates/header.html'"></div>
+
+    <md-content laout="column" flex>
+        <!--<md-card class="searchcard">-->
+            <!--<label>Messages From Users</label>-->
+            <!--<md-input-container class="md-icon-float md-icon-right md-block" style="height: 40px;">-->
+                <!--<label>Search Name</label>-->
+                <!--<input ng-model="searchQuery" type="text" maxlength="100"  ng-keypress="($event.which === 13)?searchChat():0"/>-->
+                <!--<md-icon md-font-library="material-icons">send</md-icon>-->
+            <!--</md-input-container>-->
+            <!--<span class="total">Total {{messages.length}} messages</span>-->
+
+
+            <!--<div class="messages">-->
+                <!--<div ng-repeat="message in messages"><span class="personName"> {{message.userName}}: &nbsp;</span> <span class="message">{{message.message}}</span></div>-->
+            <!--</div>-->
+        <!--</md-card>-->
+
+        <md-card>
+            <label>All Organizations</label>
+
+            <md-table-container>
+                <table md-table >
+                    <thead md-head >
+                        <md-progress-linear class="tableprogress" md-mode="indeterminate"></md-progress-linear>
+                        <tr md-row>
+                            <th md-column md-order-by="name"><span>Name</span></th>
+                            <th md-column ><span>Address</span></th>
+                            <th md-column ><span>People</span></th>
+                            <th md-column ><span>Closed Deals</span></th>
+                            <th md-column ><span>Open Deals</span></th>
+                            <th md-column ><span>Owner</span></th>
+                            <th md-column ><span>Edit</span></th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                    <tr md-row ng-repeat="org in orgs | filter: filter.search | limitTo: query.limit : (query.page -1) * query.limit">
+                        <td md-cell>{{org.name}}</td>
+                        <td md-cell>{{org.address}}</td>
+                        <td md-cell>{{org.people_count}}</td>
+                        <td md-cell>{{org.closed_deals_count}}</td>
+                        <td md-cell>{{org.open_deals_count}}</td>
+                        <td md-cell>{{org.owner_name}}</td>
+                        <td md-cell> <md-icon class="editorgicon" md-font-library="material-icons" ng-click="edit(org)">edit</md-icon></td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination md-limit="query.limit" md-limit-options="[10, 15, 20]" md-page="query.page" md-total="{{orgs.count}}"  md-page-select></md-table-pagination>
+        </md-card>
+
+    </md-content>
+
+</div>

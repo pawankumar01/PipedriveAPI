@@ -1,0 +1,82 @@
+<div class="pagestats">
+    <div ng-include src="'templates/header.html'"></div>
+
+    <md-content laout="column" layout="row" layout-xs="column">
+        <md-card class="editcard" flex>
+            <section layout="row" layout-sm="column" layout-align="end center" layout-wrap>
+                <div layout="row" layout-align="start start" flex ng-form name="myForm">
+                    <md-input-container class="md-icon-float md-icon-right md-block" style="height: 40px;">
+                        <label>Latitude</label>
+                        <input name="latitude" required ng-model="latitude" type="number" steps="any" />
+                    </md-input-container>
+
+                    <md-input-container class="md-icon-float md-icon-right md-block" type="number" steps="any" style="height: 40px;">
+                        <label>Longitude</label>
+                        <input required ng-model="longitude" type="number" steps="any"   />
+                    </md-input-container>
+                <span flex></span>
+                </div>
+                <md-button class="md-raised md-primary" ng-click="fetchclosestOrg()">Fetch Nearest Org</md-button>
+            </section>
+           <div>
+                <label>Closest Organization</label>
+               <md-table-container>
+
+                   <table md-table >
+                       <thead md-head>
+                       <md-progress-linear class="tableprogress" md-mode="indeterminate"></md-progress-linear>
+                       <tr md-row>
+                           <th md-column ><span>Id</span></th>
+                           <th md-column ><span>Name</span></th>
+                           <th md-column ><span>Address</span></th>
+                       </tr>
+                       </thead>
+                       <tbody md-body>
+                       <tr md-row >
+                           <td md-cell>{{orgs[0].id}}</td>
+                           <td md-cell>{{orgs[0].name}}</td>
+                           <td md-cell>{{orgs[0].address}}</td>
+                       </tr>
+                       </tbody>
+                   </table>
+               </md-table-container>
+
+            </div>
+
+            <div class="threeclosesttable">
+
+                    <label>Top 3 Closest Organizations</label>
+                <md-table-container>
+
+                        <table md-table >
+                            <thead md-head md-order="query.order">
+                            <tr md-row>
+                                <th md-column md-order-by="name"><span>Id</span></th>
+                                <th md-column md-order-by="name"><span>Name</span></th>
+                                <th md-column md-order-by="type"><span>Address</span></th>
+                            </tr>
+                            </thead>
+                            <tbody md-body>
+                            <tr md-row ng-repeat="org in orgs | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                                <td md-cell>{{org.id}}</td>
+                                <td md-cell>{{org.name}}</td>
+                                <td md-cell>{{org.address}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                </md-table-container>
+            </div>
+
+
+
+        </md-card>
+
+        <md-card flex>
+            <div id="map-container">
+                <div id="map" ></div>
+            </div>
+        </md-card>
+
+    </md-content>
+
+</div>
